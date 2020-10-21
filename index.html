@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width  initial-scale=1.0  user-scalable=0">
+<!-- <script type="text/javascript" src="mraid.js"></script> -->
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<script src="mraid.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <div class="main">
+    <div class="poster"></div>
+    <div id="main" class="kf_cloud"></div>
+  </div>
+</div>
+
+<a id="clk" onclick="_click()"></a>
+
+<script src="js/jquery.js"></script>
+<script src="js/zhuzhen.js"></script>
+<script>
+var initKf = function () {
+    _main = new KeyAnimation($("#main"), 'array', kf_cloud_arr, {
+      fps: 13,
+      width: 414/ 2,
+      height: 836/ 2
+    });
+   
+    
+};
+</script>
+<script type="text/javascript">
+  var kf_cloud_arr = [];
+  var _main;
+  var iLen_num = 0;
+  var touchState = false;
+  
+$(document).ready(function () {
+    var img_arr_s = [
+      'images/1.jpg',
+      'images/2.jpg',
+      'images/3.jpg',
+      'images/4.jpg',
+      'images/5.jpg',
+      'images/6.jpg',
+      'images/7.jpg',
+      'images/8.jpg',
+      'images/9.jpg',
+      'images/10.jpg',
+      'images/11.jpg',
+      'images/12.jpg',
+      'images/13.jpg',
+      'images/14.jpg',
+      'images/15.jpg',
+      'images/16.jpg',
+      'images/17.jpg',
+      'images/18.jpg',
+      'images/19.jpg',
+      'images/20.jpg',
+      'images/21.jpg',
+      'images/22.jpg',
+      'images/23.jpg',
+      'images/24.jpg',
+      'images/25.jpg',
+      'images/26.jpg',
+      'images/27.jpg',
+      'images/28.jpg',
+      'images/29.jpg',
+      'images/30.jpg',
+      'images/31.jpg',
+      'images/32.jpg',
+      'images/33.jpg',
+      'images/34.jpg',
+      'images/35.jpg',
+      'images/36.jpg',
+      'images/37.jpg',
+      'images/38.jpg',
+      'images/39.jpg',
+      'images/40.jpg',
+      'images/41.jpg',
+      'images/42.jpg',
+      'images/43.jpg',
+      'images/44.jpg',
+      'images/45.jpg',
+      'images/46.jpg',
+      'images/47.jpg',
+      'images/48.jpg',
+      'images/49.jpg',
+      'images/50.jpg',
+      'images/51.jpg',
+      'images/52.jpg',
+      'images/53.jpg',
+      'images/54.jpg',
+      'images/55.jpg',
+      'images/56.jpg',
+      'images/57.jpg',
+      'images/58.jpg',
+      'images/59.jpg',
+      'images/60.jpg'
+    ];
+    var iLen = img_arr_s.length;
+    for (var i = 0; i < iLen; i++) {
+        loadImage(img_arr_s[i],iLen);
+    }
+
+    try{
+      mraid.addEventListener(mraid.EVENTS.READY, adsame_ready);
+      mraid.addEventListener(mraid.EVENTS.SIZE_CHANGE, wresize);
+      mraid.extend.addEventListener(mraid.extend.EVENTS.LANDING_PAGE_DISMISS, page_in);
+      mraid.extend.addEventListener(mraid.extend.EVENTS.APPLICATION_RESIGN_ACTIVE, app_out);
+      mraid.extend.addEventListener(mraid.extend.EVENTS.APPLICATION_BECOME_ACTIVE, app_in);
+    }catch(e){}
+
+    function adsame_ready() {}
+    function app_in() {}
+    function page_in(event) {}
+    function app_out(event) {}
+    function adsame_Gtime(event) {}
+});
+
+//onload Img
+function loadImage(url,len) {
+    var img = new Image();
+    img.src = url;
+    img.onload = function (e) {
+        iLen_num++;
+
+        if((e.target.src.indexOf(".jpg") != -1)){
+          var _arr = e.target.src.split("/");
+          var this_num = _arr[_arr.length-1].split(".jpg")[0];
+          kf_cloud_arr[Number(this_num)-1] = e.target;
+        }
+
+        if (iLen_num >= len) {
+          initKf();
+          _main.fromTo(0, 59,  1);
+          
+        }
+    }
+}
+
+function init(){
+    
+}
+
+function stopScrolling(touchEvent){
+    touchEvent.preventDefault();
+    touchEvent.stopPropagation();
+}
+document.addEventListener('touchmove',stopScrolling,{passive:false})
+
+      //执行函数
+function loadImg(url){
+    var adsame_img = document.createElement("img");
+    adsame_img.src = url;
+    adsame_img.style.width = "1px";
+    adsame_img.style.height = "1px";
+    adsame_img.style.position = "absolute";
+    adsame_img.style.left = "-10000px";
+    adsame_img.style.display = "none";
+    adsame_img.id = "_loadImg_Sunsumg";
+    document.body.appendChild(adsame_img);
+}
+
+function _click(){
+	  mraid.extend.viewMore('http://c.l.qq.com/lclick?seq=20201013000569&loc=App_News_Splash');
+}
+
+  </script>
+</body>
+</html>
