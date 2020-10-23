@@ -1,48 +1,50 @@
 ﻿<!DOCTYPE html>
-<html><head>
-<meta charset="UTF-8">
-<title>winston</title>
-<meta name="viewport" content="width=device-width  initial-scale=1.0  user-scalable=0">
-<!-- <script type="text/javascript" src="mraid.js"></script> -->
-<link href="css/main.css" rel="stylesheet" type="text/css">
-<script src="mraid.js"></script>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>winston</title>
+    <meta name="viewport" content="width=device-width  initial-scale=1.0  user-scalable=0">
+    <!-- <script type="text/javascript" src="mraid.js"></script> -->
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script src="mraid.js"></script>
 </head>
 <body>
 
 <div class="container">
-  <div class="main">
-    <div class="poster"></div>
-  
-    <div id="right" class="kf_cloud"></div>
-    <div id="left" class="kf_cloud"></div>
-   
-    
-  </div>
+    <div class="main">
+        <div class="poster"></div>
+
+        <div id="right" class="kf_cloud"></div>
+        <div id="left" class="kf_cloud"></div>
+
+
+    </div>
 </div>
 <img src="images/logo.png" class="slogon" id="logo">
 <img src="images/btn.png" class="more" id="more">
 
-<img id="s_left" src="images/left.png" style="width:20%; position: absolute; top: 50%; left: 40%; z-index: 1; display: block;" />
-<img id="s_right" src="images/right.png" style="width:20%; position: absolute; top: 50%; left: 40%; z-index: 1; display: none;" />
+<img id="s_left" src="images/left.png" style="width:20%; position: absolute; top: 50%; left: 40%; z-index: 1; display: block;"/>
+<img id="s_right" src="images/right.png" style="width:20%; position: absolute; top: 50%; left: 40%; z-index: 1; display: none;"/>
+<button id="permission" style="position:absolute; z-index: 1000; top: 16.5%;left:20%;height: 5%;">点我获取devicemotion权限</button>
 <a id="clk" onclick="_click()"></a>
 
 <script src="js/jquery.js"></script>
 <script src="js/zhuzhen.js"></script>
 <script src="js/main.js"></script>
 <script>
-var initKf = function () {
-    _left = new KeyAnimation($("#left"), 'array', kf_cloud_arr, {
-      fps: 18,
-      width: 414/ 2,
-      height: 736/ 2
-    });
-    _right = new KeyAnimation($("#right"), 'array', kf_cloud_arr, {
+  var initKf = function() {
+    _left = new KeyAnimation($('#left'), 'array', kf_cloud_arr, {
       fps: 18,
       width: 414 / 2,
       height: 736 / 2
     });
-    
-};
+    _right = new KeyAnimation($('#right'), 'array', kf_cloud_arr, {
+      fps: 18,
+      width: 414 / 2,
+      height: 736 / 2
+    });
+
+  };
 </script>
 <script type="text/javascript">
   var kf_cloud_arr = [];
@@ -50,8 +52,8 @@ var initKf = function () {
   var _right;
   var iLen_num = 0;
   var touchState = false;
-  
-$(document).ready(function () {
+
+  $(document).ready(function() {
     var img_arr_s = [
       'images/1.jpg',
       'images/2.jpg',
@@ -156,139 +158,157 @@ $(document).ready(function () {
     ];
     var iLen = img_arr_s.length;
     for (var i = 0; i < iLen; i++) {
-        loadImage(img_arr_s[i],iLen);
+      loadImage(img_arr_s[i], iLen);
     }
 
-    try{
+    try {
       mraid.addEventListener(mraid.EVENTS.READY, adsame_ready);
       mraid.addEventListener(mraid.EVENTS.SIZE_CHANGE, wresize);
       mraid.extend.addEventListener(mraid.extend.EVENTS.LANDING_PAGE_DISMISS, page_in);
       mraid.extend.addEventListener(mraid.extend.EVENTS.APPLICATION_RESIGN_ACTIVE, app_out);
       mraid.extend.addEventListener(mraid.extend.EVENTS.APPLICATION_BECOME_ACTIVE, app_in);
-    }catch(e){}
+    } catch (e) {
+    }
 
-    function adsame_ready() {}
-    function app_in() {}
-    function page_in(event) {}
-    function app_out(event) {}
-    function adsame_Gtime(event) {}
-});
+    function adsame_ready() {
+    }
 
-//onload Img
-function loadImage(url,len) {
+    function app_in() {
+    }
+
+    function page_in(event) {
+    }
+
+    function app_out(event) {
+    }
+
+    function adsame_Gtime(event) {
+    }
+  });
+
+  //onload Img
+  function loadImage(url, len) {
     var img = new Image();
     img.src = url;
-    img.onload = function (e) {
-        iLen_num++;
+    img.onload = function(e) {
+      iLen_num++;
 
-        if((e.target.src.indexOf(".jpg") != -1)){
-          var _arr = e.target.src.split("/");
-          var this_num = _arr[_arr.length-1].split(".jpg")[0];
-          kf_cloud_arr[Number(this_num)-1] = e.target;
-        }
+      if ((e.target.src.indexOf('.jpg') != -1)) {
+        var _arr = e.target.src.split('/');
+        var this_num = _arr[_arr.length - 1].split('.jpg')[0];
+        kf_cloud_arr[Number(this_num) - 1] = e.target;
+      }
 
-        if (iLen_num >= len) {
-          initKf();
-          _left.fromTo(50, 99,  1);
-          _right.fromTo(0, 49,  1,function(){
-            //$('#right').remove();
-            //$('#left').remove();
-          });
-        }
-    }
-}
+      if (iLen_num >= len) {
+        initKf();
+        _left.fromTo(50, 99, 1);
+        _right.fromTo(0, 49, 1, function() {
+          //$('#right').remove();
+          //$('#left').remove();
+        });
+      }
+    };
+  }
 
-function init(){
-    
-}
+  function init() {
 
-function stopScrolling(touchEvent){
+  }
+
+  function stopScrolling(touchEvent) {
     touchEvent.preventDefault();
     touchEvent.stopPropagation();
-}
-document.addEventListener('touchmove',stopScrolling,{passive:false})
+  }
 
-      //执行函数
-function loadImg(url){
-    var adsame_img = document.createElement("img");
+  document.addEventListener('touchmove', stopScrolling, { passive: false });
+
+  //执行函数
+  function loadImg(url) {
+    var adsame_img = document.createElement('img');
     adsame_img.src = url;
-    adsame_img.style.width = "1px";
-    adsame_img.style.height = "1px";
-    adsame_img.style.position = "absolute";
-    adsame_img.style.left = "-10000px";
-    adsame_img.style.display = "none";
-    adsame_img.id = "_loadImg_Sunsumg";
+    adsame_img.style.width = '1px';
+    adsame_img.style.height = '1px';
+    adsame_img.style.position = 'absolute';
+    adsame_img.style.left = '-10000px';
+    adsame_img.style.display = 'none';
+    adsame_img.id = '_loadImg_Sunsumg';
     document.body.appendChild(adsame_img);
-}
+  }
 
-function _click(){
-	  mraid.extend.viewMore('http://c.l.qq.com/lclick?seq=20200525002020&loc=QQlive_APPWeb_Phone_Splash');
-}
+  function _click() {
+    mraid.extend.viewMore('http://c.l.qq.com/lclick?seq=20200525002020&loc=QQlive_APPWeb_Phone_Splash');
+  }
 
-var more = document.querySelector("#more");
-var clk = document.querySelector("#clk");
-var logo = document.querySelector("#logo");
-var tips = document.querySelector("#tips");
-var left_container = document.querySelector("#left");
-var s_interval = setInterval(function(){
-  if(document.getElementById('s_left').style.display == 'none'){
-    document.getElementById('s_left').style.display = 'block';
-    document.getElementById('s_right').style.display = 'none';
-  }else{
+  var more = document.querySelector('#more');
+  var clk = document.querySelector('#clk');
+  var logo = document.querySelector('#logo');
+  var tips = document.querySelector('#tips');
+  var left_container = document.querySelector('#left');
+  var s_interval = setInterval(function() {
+    if (document.getElementById('s_left').style.display == 'none') {
+      document.getElementById('s_left').style.display = 'block';
+      document.getElementById('s_right').style.display = 'none';
+    } else {
+      document.getElementById('s_left').style.display = 'none';
+      document.getElementById('s_right').style.display = 'block';
+    }
+
+  }, 500);
+
+  setTimeout(function() {
+    clearInterval(s_interval);
     document.getElementById('s_left').style.display = 'none';
-    document.getElementById('s_right').style.display = 'block';
-  }
-
-},500)
-
-setTimeout(function(){
-  clearInterval(s_interval);
-  document.getElementById('s_left').style.display = 'none';
     document.getElementById('s_right').style.display = 'none';
-},2000)
+  }, 2000);
 
-function Hide(obj){
-  obj.style.display='none';
-}
-function open(){
-  //mraid.extend.viewMore('https://m.baidu.com');
-}
-
-if (typeof DeviceMotionEvent.requestPermission === 'function') {
-
-                DeviceMotionEvent.requestPermission().then(response => {
-
-                    // This is showing "denied" without showing any permission popup
-                    console.log(response)
-                    document.getElementById('permissionStatus').innerText = response
-
-                }).catch(console.error)
-        } else {
-            // ignore this case for processing
-            console.log('non iOS 13')
-        }
-window.addEventListener('deviceorientation', handleFunc, false);
-var last_position,finished;
-function handleFunc(event) {
-  var alpha = event.alpha;
-  var beta = event.beta;
-  var gamma = event.gamma; 
-  if (gamma < -30 && last_position != 1) {
-    //move left
-    last_position= 1;
-    left_container.style.transform = 'translateX(-100%)';
-    left_container.style.webkitTransform = 'translateX(-100%)';
-    Hide(tips)
-  } else if (gamma > 30 && last_position != 2) {
-    //move right
-    last_position = 2;
-    left_container.style.transform = 'translateX(0%)';
-    left_container.style.webkitTransform = 'translateX(0%)';
-    Hide(tips)
+  function Hide(obj) {
+    obj.style.display = 'none';
   }
-}
-	
-	
-  </script>
+
+  function open() {
+    //mraid.extend.viewMore('https://m.baidu.com');
+  }
+
+  document.getElementById('permission').addEventListener('click', function() {
+    console.log('点了下权限按钮');
+
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+      DeviceMotionEvent.requestPermission().then(response => {
+
+        // This is showing "denied" without showing any permission popup
+        console.log(response);
+        document.getElementById('permission').innerText = response;
+
+      }).catch(console.error);
+    } else {
+      // ignore this case for processing
+      console.log('non iOS 13');
+    }
+
+  });
+
+  window.addEventListener('deviceorientation', handleFunc, false);
+  var last_position, finished;
+
+  function handleFunc(event) {
+    var alpha = event.alpha;
+    var beta = event.beta;
+    var gamma = event.gamma;
+    if (gamma < -30 && last_position != 1) {
+      //move left
+      last_position = 1;
+      left_container.style.transform = 'translateX(-100%)';
+      left_container.style.webkitTransform = 'translateX(-100%)';
+      Hide(tips);
+    } else if (gamma > 30 && last_position != 2) {
+      //move right
+      last_position = 2;
+      left_container.style.transform = 'translateX(0%)';
+      left_container.style.webkitTransform = 'translateX(0%)';
+      Hide(tips);
+    }
+  }
+
+
+</script>
 </body>
 </html>
