@@ -254,7 +254,23 @@ function open(){
   //mraid.extend.viewMore('https://m.baidu.com');
 }
 
+if (typeof DeviceMotionEvent.requestPermission === 'function') {
+            document.getElementById('deviceType').innerText = 'iOS 13'
+            document.getElementById('permission').addEventListener('click', function () {
+                console.log('button clicked')
+                DeviceMotionEvent.requestPermission().then(response => {
 
+                    // This is showing "denied" without showing any permission popup
+                    console.log(response)
+                    document.getElementById('permissionStatus').innerText = response
+
+                }).catch(console.error)
+            });
+        } else {
+            // ignore this case for processing
+            console.log('non iOS 13')
+            document.getElementById('deviceType').innerText = 'non iOS 13'
+        }
 window.addEventListener('deviceorientation', handleFunc, false);
 var last_position,finished;
 function handleFunc(event) {
@@ -275,6 +291,8 @@ function handleFunc(event) {
     Hide(tips)
   }
 }
+	
+	
   </script>
 </body>
 </html>
