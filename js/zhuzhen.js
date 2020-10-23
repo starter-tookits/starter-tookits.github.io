@@ -50,15 +50,9 @@ var KeyAnimation = function KeyAnimation(el, type, imgs, options) {
 		canvas.width = options.width * 2 || el.width() * 2;
 		canvas.height = options.height * 2 || el.height() * 2;
 		canvas.style.display = 'block';
-		canvas.style.width = '100%';
-		//canvas.style.height = '100%';
-		//canvas.style.height = (Number($(window).height())-100)+"px";
-		//canvas.style.marginLeft = (Number(canvas.width)-Number($(window).width()))*-1/2+"px";
-		if($(window).height()/$(window).width() < 1.78){
-			canvas.style.marginTop = "-50px";
-		}
+		//canvas.style.width = '100%';
+		canvas.style.height = '100%';
 		el.append(canvas);
-		//console.log(canvas.style.width+"__"+$(window).width());
 	};
 
 	// drawImg

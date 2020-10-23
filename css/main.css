@@ -11,7 +11,7 @@ box-sizing: border-box;
 outline: none;
 }
 .container{display:flex;flex-direction:column;height:100%;width:100%;}
-.main{flex:1;position:relative;background:url(../images/index.jpg) no-repeat center 0;background-size:cover; margin-top:-7%;}
+.main{flex:1;position:relative;background:url(../images/index.jpg) no-repeat center 0;background-size:cover;}
 .logo{flex:0;}
 .logo>img{width:100%;}
 #left{position:absolute;width:100%;height:100%;overflow:hidden;transform:translateX(-50%);transition:transform 1s linear;-webkit-transition:transform 1s linear;}
@@ -22,7 +22,7 @@ outline: none;
 .more{position:absolute;width:41.5%;left:29.25%;top:75%}
 .tips{position:absolute;width:21.13%;height:50%;left:39.94%;top:40%;animation:blink 1s steps(1, start) infinite;animation-fill-mode:forwards;-webkit-animation:blink 1s steps(1, start) infinite;-webkit-animation-fill-mode:forwards;}
 .disapear{animation:hide steps(1, end) 2s;animation-fill-mode:both;-webkit-animation:hide steps(1, end) 2s;-webkit-animation-fill-mode:both}
-#clk{position:absolute;left:0;top:0;width:100%;height:83%;z-index:2}
+#clk{display:block;position:absolute;left:0;top:0;width:100%;height:100%;z-index:2}
 
 @keyframes slide{
 0% {transform: translateX(-0%)} 2% {transform: translateX(-2%)} 4% {transform: translateX(-4%)} 6% {transform: translateX(-6%)} 8% {transform: translateX(-8%)} 10% {transform: translateX(-10%)} 12% {transform: translateX(-12%)} 14% {transform: translateX(-14%)} 16% {transform: translateX(-16%)} 18% {transform: translateX(-18%)} 20% {transform: translateX(-20%)} 22% {transform: translateX(-22%)} 24% {transform: translateX(-24%)} 26% {transform: translateX(-26%)} 28% {transform: translateX(-28%)} 30% {transform: translateX(-30%)} 32% {transform: translateX(-32%)} 34% {transform: translateX(-34%)} 36% {transform: translateX(-36%)} 38% {transform: translateX(-38%)} 40% {transform: translateX(-40%)} 42% {transform: translateX(-42%)} 44% {transform: translateX(-44%)} 46% {transform: translateX(-46%)} 48% {transform: translateX(-48%)} 50% {transform: translateX(-50%)} 52% {transform: translateX(-52%)} 54% {transform: translateX(-54%)} 56% {transform: translateX(-56%)} 58% {transform: translateX(-58%)} 60% {transform: translateX(-60%)} 62% {transform: translateX(-62%)} 64% {transform: translateX(-64%)} 66% {transform: translateX(-66%)} 68% {transform: translateX(-68%)} 70% {transform: translateX(-70%)} 72% {transform: translateX(-72%)} 74% {transform: translateX(-74%)} 76% {transform: translateX(-76%)} 78% {transform: translateX(-78%)} 80% {transform: translateX(-80%)} 82% {transform: translateX(-82%)} 84% {transform: translateX(-84%)} 86% {transform: translateX(-86%)} 88% {transform: translateX(-88%)} 90% {transform: translateX(-90%)} 92% {transform: translateX(-92%)} 94% {transform: translateX(-94%)} 96% {transform: translateX(-96%)} 98% {transform: translateX(-98%)}}

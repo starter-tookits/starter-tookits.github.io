@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html><head>
 <meta charset="UTF-8">
-<title></title>
+<title>winston</title>
 <meta name="viewport" content="width=device-width  initial-scale=1.0  user-scalable=0">
 <!-- <script type="text/javascript" src="mraid.js"></script> -->
 <link href="css/main.css" rel="stylesheet" type="text/css">
@@ -12,28 +12,41 @@
 <div class="container">
   <div class="main">
     <div class="poster"></div>
-    <div id="main" class="kf_cloud"></div>
+  
+    <div id="right" class="kf_cloud"></div>
+    <div id="left" class="kf_cloud"></div>
+   
+    
   </div>
 </div>
+<img src="images/logo.png" class="slogon" id="logo">
+<img src="images/btn.png" class="more" id="more">
 
+<img id="s_left" src="images/left.png" style="width:20%; position: absolute; top: 50%; left: 40%; z-index: 1; display: block;" />
+<img id="s_right" src="images/right.png" style="width:20%; position: absolute; top: 50%; left: 40%; z-index: 1; display: none;" />
 <a id="clk" onclick="_click()"></a>
 
 <script src="js/jquery.js"></script>
 <script src="js/zhuzhen.js"></script>
 <script>
 var initKf = function () {
-    _main = new KeyAnimation($("#main"), 'array', kf_cloud_arr, {
-      fps: 13,
+    _left = new KeyAnimation($("#left"), 'array', kf_cloud_arr, {
+      fps: 18,
       width: 414/ 2,
-      height: 836/ 2
+      height: 736/ 2
     });
-   
+    _right = new KeyAnimation($("#right"), 'array', kf_cloud_arr, {
+      fps: 18,
+      width: 414 / 2,
+      height: 736 / 2
+    });
     
 };
 </script>
 <script type="text/javascript">
   var kf_cloud_arr = [];
-  var _main;
+  var _left;
+  var _right;
   var iLen_num = 0;
   var touchState = false;
   
@@ -98,7 +111,47 @@ $(document).ready(function () {
       'images/57.jpg',
       'images/58.jpg',
       'images/59.jpg',
-      'images/60.jpg'
+      'images/60.jpg',
+      'images/61.jpg',
+      'images/62.jpg',
+      'images/63.jpg',
+      'images/64.jpg',
+      'images/65.jpg',
+      'images/66.jpg',
+      'images/67.jpg',
+      'images/68.jpg',
+      'images/69.jpg',
+      'images/70.jpg',
+      'images/71.jpg',
+      'images/72.jpg',
+      'images/73.jpg',
+      'images/74.jpg',
+      'images/75.jpg',
+      'images/76.jpg',
+      'images/77.jpg',
+      'images/78.jpg',
+      'images/79.jpg',
+      'images/80.jpg',
+      'images/81.jpg',
+      'images/82.jpg',
+      'images/83.jpg',
+      'images/84.jpg',
+      'images/85.jpg',
+      'images/86.jpg',
+      'images/87.jpg',
+      'images/88.jpg',
+      'images/89.jpg',
+      'images/90.jpg',
+      'images/91.jpg',
+      'images/92.jpg',
+      'images/93.jpg',
+      'images/94.jpg',
+      'images/95.jpg',
+      'images/96.jpg',
+      'images/97.jpg',
+      'images/98.jpg',
+      'images/99.jpg',
+      'images/100.jpg'
     ];
     var iLen = img_arr_s.length;
     for (var i = 0; i < iLen; i++) {
@@ -135,8 +188,11 @@ function loadImage(url,len) {
 
         if (iLen_num >= len) {
           initKf();
-          _main.fromTo(0, 59,  1);
-          
+          _left.fromTo(50, 99,  1);
+          _right.fromTo(0, 49,  1,function(){
+            //$('#right').remove();
+            //$('#left').remove();
+          });
         }
     }
 }
@@ -165,9 +221,59 @@ function loadImg(url){
 }
 
 function _click(){
-	  mraid.extend.viewMore('http://c.l.qq.com/lclick?seq=20201013000569&loc=App_News_Splash');
+	  mraid.extend.viewMore('http://c.l.qq.com/lclick?seq=20200525002020&loc=QQlive_APPWeb_Phone_Splash');
 }
 
+var more = document.querySelector("#more");
+var clk = document.querySelector("#clk");
+var logo = document.querySelector("#logo");
+var tips = document.querySelector("#tips");
+var left_container = document.querySelector("#left");
+var s_interval = setInterval(function(){
+  if(document.getElementById('s_left').style.display == 'none'){
+    document.getElementById('s_left').style.display = 'block';
+    document.getElementById('s_right').style.display = 'none';
+  }else{
+    document.getElementById('s_left').style.display = 'none';
+    document.getElementById('s_right').style.display = 'block';
+  }
+
+},500)
+
+setTimeout(function(){
+  clearInterval(s_interval);
+  document.getElementById('s_left').style.display = 'none';
+    document.getElementById('s_right').style.display = 'none';
+},2000)
+
+function Hide(obj){
+  obj.style.display='none';
+}
+function open(){
+  //mraid.extend.viewMore('https://m.baidu.com');
+}
+
+
+window.addEventListener('deviceorientation', handleFunc, false);
+var last_position,finished;
+function handleFunc(event) {
+  var alpha = event.alpha;
+  var beta = event.beta;
+  var gamma = event.gamma; 
+  if (gamma < -30 && last_position != 1) {
+    //move left
+    last_position= 1;
+    left_container.style.transform = 'translateX(-100%)';
+    left_container.style.webkitTransform = 'translateX(-100%)';
+    Hide(tips)
+  } else if (gamma > 30 && last_position != 2) {
+    //move right
+    last_position = 2;
+    left_container.style.transform = 'translateX(0%)';
+    left_container.style.webkitTransform = 'translateX(0%)';
+    Hide(tips)
+  }
+}
   </script>
 </body>
 </html>

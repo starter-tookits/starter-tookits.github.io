@@ -35,6 +35,7 @@
     var alpha = event.alpha;
     var beta = event.beta;
     var gamma = event.gamma; 
+    console.log('设备方向 gamma:', gamma);
     if (gamma < -30 && last_position != 1) {
       //move left
       last_position= 1;
